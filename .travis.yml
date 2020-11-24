@@ -51,11 +51,6 @@ jobs:
         - stage: Initial tests
           env: TEST_COVERAGE=true CMD='make test-cov'
                PIP_DEPENDENCIES="$PIP_DEPENDENCIES pytest-cov codecov"
- # Main test, used for coverage power support
-  arch: ppc64le
-        - stage: Initial tests
-          env: TEST_COVERAGE=true CMD='make test-cov'
-               PIP_DEPENDENCIES="$PIP_DEPENDENCIES pytest-cov codecov"
 
         # MacOS X tests
         - os: osx
@@ -66,21 +61,10 @@ jobs:
         - env: PYTHON_VERSION=3.7 CMD='make test'
                CONDA_DEPENDENCIES='Cython click regions requests tqdm'
                PIP_DEPENDENCIES='pytest-astropy parfive pydantic'
-        # Run tests without optional dependencies power support 
-        arch: ppc64le
-        - env: PYTHON_VERSION=3.7 CMD='make test'
-               CONDA_DEPENDENCIES='Cython click regions requests tqdm'
-               PIP_DEPENDENCIES='pytest-astropy parfive pydantic'
         # Run tests without GAMMAPY_DATA available
         - stage: Initial tests
           env: CMD='make test'
                FETCH_GAMMAPY_DATA=false
- # Run tests without GAMMAPY_DATA available power support 
-        - stage: Initial tests
-        arch: ppc64le
-          env: CMD='make test'
-               FETCH_GAMMAPY_DATA=false
-
         # Build docs
         - env: CMD='make docs-all fmt=False'
                CONDA_DEPENDENCIES=$CONDA_DEPENDENCIES_DOCS
