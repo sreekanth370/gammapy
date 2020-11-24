@@ -7,21 +7,17 @@
 # But that's OK ... the language here is irrelevant because we use conda
 # to install our own Python.
 language: c
-arch:
+arch: 
     - amd64
     - ppc64le
-
 os:
     - linux
-
 addons:
   apt:
     packages: &default_apt
       - graphviz
       - texlive-latex-extra
       - dvipng
-
-
 env:
     global:
         - PYTHON_VERSION=3.7
@@ -50,12 +46,10 @@ stages:
    - name: Comprehensive tests
 
 jobs:
-
     # Don't wait for allowed failures
     fast_finish: true
 
     include:
-
         # Main test, used for coverage
         - stage: Initial tests
           env: TEST_COVERAGE=true CMD='make test-cov'
